@@ -7,12 +7,14 @@ import br.com.fiap.api_rest.repository.LivroRepository;
 import br.com.fiap.api_rest.service.LivroService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -33,13 +35,15 @@ public class LivroController {
     }
 
     @GetMapping
-    public ResponseEntity<List<LivroResponse>> readLivros() {
-        List<Livro> livros = livroRepository.findAll();
-        return new ResponseEntity<>(livroService.livrosToResponse(livros),HttpStatus.OK);
+    public ResponseEntity<Page<LivroResponse>> readLivros() {
+        Pageable pageable = PageRequest
+                .of(0, 2, Sort.by("titulo").ascending());
+        return new ResponseEntity<>(livroService.findAll(pageable), HttpStatus.OK);
     }
 
     // @PathVariable localhost:8080/livros/1
     // @RequestParam localhost:8080/livros/?id=1
+
     @GetMapping("/{id}")
     public ResponseEntity<LivroResponse> readLivro(@PathVariable Long id) {
         Optional<Livro> livro = livroRepository.findById(id);
