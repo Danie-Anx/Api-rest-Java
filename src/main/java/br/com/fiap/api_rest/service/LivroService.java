@@ -8,6 +8,7 @@ import br.com.fiap.api_rest.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.hateoas.Link;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -37,7 +38,12 @@ public class LivroService {
     }
 
     public LivroResponse livroToResponse(Livro livro) {
-        return new LivroResponse(livro.getAutor() + " - " + livro.getTitulo());
+        return new LivroResponse(livro.getId(), livro.getTitulo() + " - " + livro.getTitulo());
+    }
+
+    public LivroResponseDTO livroToResponseDTO(Livro livro) {
+        Link link = linkTo
+        return new LivroResponse(livro.getId(), livro.getTitulo() + " - " + livro.getTitulo());
     }
 
     public List<LivroResponse> livrosToResponse(List<Livro> livros) {
@@ -51,5 +57,7 @@ public class LivroService {
     public Page<LivroResponse> findAll(Pageable pageable) {
         return livroRepository.findAll(pageable).map(this::livroToResponse);
     }
+
+    public Page<LivroResponse> findAll(Pageable pageable, LivroRequestDTO livroRequest) {}
 
 }
