@@ -54,8 +54,7 @@ public class LivroController {
     @GetMapping
     public ResponseEntity<Page<LivroResponseDTO>> readLivros(@RequestParam(defaultValue = "0") Integer pageNumber) {
         Pageable pageable = PageRequest
-                .of(pageNumber, 2, Sort.by("autor").ascending()
-                        .and(Sort.by("titulo").ascending()));
+                .of(pageNumber, 2, Sort.by("titulo").ascending());
         return new ResponseEntity<>(livroService.findAllDTO(pageable), HttpStatus.OK);
     }
 
