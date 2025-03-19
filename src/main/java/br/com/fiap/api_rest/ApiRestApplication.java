@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @OpenAPIDefinition(info =
-@Info(title = "API de Livros", description = "Exemplo de API RESTful com Swagger da 2TDSPW" , version = "v1"))
-
+@Info(title = "API de Livros", description = "Exemplo de API RESTful com Swagger da 2TDSPW", version = "v1"))
 public class ApiRestApplication {
 
 	public static void main(String[] args) {
