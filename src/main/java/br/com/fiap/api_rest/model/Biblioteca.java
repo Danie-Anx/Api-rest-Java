@@ -8,28 +8,28 @@ import java.util.List;
 public class Biblioteca {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String Nome;
-    @OneToOne
+    private Long id;
+    private String nome;
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_endereco")
     private Endereco endereco;
     @OneToMany(mappedBy = "biblioteca")
     private List<Livro> livros;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
     public Endereco getEndereco() {

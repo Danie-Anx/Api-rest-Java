@@ -6,16 +6,23 @@ import jakarta.persistence.*;
 public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String localizacao;
     @OneToOne(mappedBy = "endereco")
     private Biblioteca biblioteca;
 
-    public long getId() {
+    public Endereco() {
+    }
+
+    public Endereco(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
