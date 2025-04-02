@@ -18,6 +18,10 @@ public class LivroRequest {
     private Categoria categoria;
     @Pattern(regexp = "^970\\d{10}$|^970\\d{7}$", message = "O ISBN deve ter 10 OU 13 dígitos e iniciar por 970")
     private String isbn;
+    @NotNull(message = "O id da biblioteca é obrigatório")
+    private Long biblioteca;
+    @NotNull(message = "O número do exemplar é obrigatório")
+    private int numeroExemplar;
 
     public String getTitulo() {
         return titulo;
@@ -57,5 +61,21 @@ public class LivroRequest {
 
     public void setIsbn(String isbn) {
         this.isbn = isbn;
+    }
+
+    public Long getBiblioteca() {
+        return biblioteca;
+    }
+
+    public void setBiblioteca(Long biblioteca) {
+        this.biblioteca = biblioteca;
+    }
+
+    public int getNumeroExemplar() {
+        return numeroExemplar;
+    }
+
+    public void setNumeroExemplar(int numeroExemplar) {
+        this.numeroExemplar = numeroExemplar;
     }
 }
